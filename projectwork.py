@@ -44,6 +44,8 @@ cj = 0
 
 # what could be added is a clause that says for r <= 10**-10 r = 0.01? (small)
 
+# can include the line with math.log( ... , 10) to log base 10 the function so it fits better on my
+# graph do i need to multiply by the dx here or? not sure
 
 for i in x:
 
@@ -53,7 +55,7 @@ for i in x:
 
         r = x[ci]**2 + y[cj]**2
 
-        I_theta_arr[ci][cj] = math.log(((2 * sp.j1(r) / r) ** 2), 10)
+        I_theta_arr[ci][cj] = ((2 * sp.j1(r) / r) ** 2)*dx
 
         cj = cj+1
 
@@ -79,6 +81,7 @@ I_theta_arr = np.array(I_theta_arr)
 
 # plug the data into pcolourmesh!
 plt.pcolormesh(x, y, I_theta_arr.T)
-plt.colorbar()  # need a colourbar to show the intensity scale
+plt.colorbar(label='$Intensity$')  # need a colorbar to show the intensity scale
+plt.xlabel('$x$')
+plt.ylabel('$y$')
 plt.show()
-
